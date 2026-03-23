@@ -4,9 +4,11 @@ thumbs.db
 time-travel.*
 
 # IDE
+whitebooks/
 .vscode/
-.vs/
 .idea/
+.trae/
+.vs/
 *.iml
 
 # Rust
