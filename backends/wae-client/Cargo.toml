@@ -1,0 +1,22 @@
+[package]
+name = "wae-client"
+version = "0.1.0"
+edition = "2021"
+description = "WAE 前端客户端库，支持 Web、桌面和移动平台"
+homepage = "https://wae.rs"
+repository = "https://github.com/wae-rs/wae"
+license = "MIT"
+
+[dependencies]
+wasm-bindgen = { version = "0.2", optional = true }
+web-sys = { version = "0.3", features = ["Document", "Element", "Event", "EventTarget", "HtmlElement", "Node"], optional = true }
+js-sys = { version = "0.3", optional = true }
+
+[features]
+default = []
+web = ["wasm-bindgen", "web-sys", "js-sys"]
+desktop = []
+mobile = []
+
+[lib]
+crate-type = ["cdylib", "rlib"]

@@ -223,8 +223,154 @@ APP_DATABASE__HOST=localhost
 APP_DATABASE__PORT=5432
 ```
 
+## 前端框架使用
+
+WAE 提供了完整的前端框架，让 Rust 开发者能够以简洁、强类型的方式编写前端代码。
+
+### 1. 添加依赖
+
+```toml
+[dependencies]
+wae-client = { path = "backends/wae-client", features = ["web"] }
+wasm-bindgen = "0.2"
+```
+
+### 2. 创建组件
+
+```rust
+use wae_client::prelude::*;
+
+#[component]
+fn Counter(initial: i32) -> Element {
+    let count = signal(initial);
+
+    html! {
+        <div class="flex items-center gap-2">
+            <span>{count.get()}</span>
+            <button on:click={move || count.set(count.get() + 1)}>
+                "+"
+            </button>
+        </div>
+    }
+}
+
+#[component]
+fn App() -> Element {
+    html! {
+        <div class="p-4">
+            <h1 class="text-xl font-bold">Welcome to WAE</h1>
+            <Counter initial={0} />
+        </div>
+    }
+}
+
+fn main() {
+    wae_client::start(App);
+}
+```
+
+### 3. 构建和运行
+
+```bash
+# 构建前端资源
+wae build --target web --out-dir static/wasm
+
+# 运行后端服务
+cargo run --bin server
+```
+
+## Schema 驱动开发
+
+WAE 提供了基于 Schema-Driven Development 的代码生成工具，让前后端开发更加高效。
+
+### 1. 创建 Schema 文件
+
+创建 `api/schema.wae` 文件：
+
+```ruby
+namespace todo;
+
+message Todo {
+    id: string;
+    text: string;
+    completed: bool;
+}
+
+message CreateTodo {
+    text: string;
+}
+
+service TodoService {
+    @http(GET, "/todos")
+    rpc ListTodos() -> list<Todo>;
+
+    @http(POST, "/todos")
+    rpc CreateTodo(req: CreateTodo) -> Todo;
+}
+```
+
+### 2. 生成代码
+
+```bash
+wae generate -i api/schema.wae -o generated
+```
+
+### 3. 实现服务端
+
+```rust
+use generated::server::{TodoService, CreateTodo, Todo};
+
+struct MyTodoService {
+    db: DbPool,
+}
+
+#[async_trait]
+impl TodoService for MyTodoService {
+    async fn list_todos(&self) -> Result<Vec<Todo>, Error> {
+        // 从数据库查询
+    }
+    async fn create_todo(&self, req: CreateTodo) -> Result<Todo, Error> {
+        // 插入数据库
+    }
+}
+
+// 挂载路由
+let service = MyTodoService::new(db);
+let app = todo_service_router(service);
+```
+
+### 4. 前端调用
+
+```rust
+use generated::client::TodoServiceClient;
+
+#[component]
+fn TodoList() -> Element {
+    let client = TodoServiceClient::new("/api");
+    let todos = signal(Vec::new());
+    
+    // 组件挂载时加载数据
+    {}
+    
+    html! {
+        <div>
+            {todos.get().iter().map(|todo| {
+                html! { <div>{todo.text}</div> }
+            })}
+            <button on:click={move || {
+                // 创建新任务
+            }}>
+                "Add Todo"
+            </button>
+        </div>
+    }
+}
+```
+
 ## 下一步
 
 - [核心优势](/guide/advantages) - 了解 WAE 的设计理念
 - [架构设计](/architecture/overview) - 深入了解 WAE 的架构
 - [模块文档](/modules/ai) - 了解各个模块的功能
+- [Schema 语法](/api/schema) - 学习 Schema 语法规范
+- [代码生成工具](/api/codegen) - 了解代码生成工具的使用

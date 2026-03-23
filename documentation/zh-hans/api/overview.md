@@ -91,17 +91,17 @@ pub use wae_websocket as websocket;
 pub use types::{WaeError, WaeResult};
 ```
 
-## 前端模块 (@wae/*)
+## 前端模块 (@wae/\*)
 
 TypeScript/JavaScript 前端库：
 
-| 包名 | 说明 |
-|-----|------|
-| `@wae/core` | TypeScript 类型定义 |
-| `@wae/client` | HTTP 客户端 |
-| `@wae/auth` | 认证客户端 |
-| `@wae/websocket` | WebSocket 客户端 |
-| `@wae/storage` | 存储服务客户端 |
+| 包名               | 说明              |
+| ---------------- | --------------- |
+| `@wae/core`      | TypeScript 类型定义 |
+| `@wae/client`    | HTTP 客户端        |
+| `@wae/auth`      | 认证客户端           |
+| `@wae/websocket` | WebSocket 客户端   |
+| `@wae/storage`   | 存储服务客户端         |
 
 ### 使用示例
 
@@ -123,66 +123,66 @@ use wae_websocket::{WebSocketServer, ServerConfig};
 
 ### 核心模块
 
-| 模块 | 说明 |
-|-----|------|
-| `wae-types` | 核心类型定义 (WaeError, WaeResult, ErrorCategory) |
-| `wae-config` | 配置管理 (ConfigLoader, load_config) |
-| `wae-https` | HTTP/HTTPS 服务 (HttpsServerBuilder, ApiResponse) |
-| `wae-database` | 数据库 ORM (条件编译) |
-| `wae-crypto` | 加密工具 (hash, hmac, password, totp) |
+| 模块             | 说明                                              |
+| -------------- | ----------------------------------------------- |
+| `wae-types`    | 核心类型定义 (WaeError, WaeResult, ErrorCategory)     |
+| `wae-config`   | 配置管理 (ConfigLoader, load\_config)               |
+| `wae-https`    | HTTP/HTTPS 服务 (HttpsServerBuilder, ApiResponse) |
+| `wae-database` | 数据库 ORM (条件编译)                                  |
+| `wae-crypto`   | 加密工具 (hash, hmac, password, totp)               |
 
 ### 服务模块
 
-| 模块 | 说明 |
-|-----|------|
-| `wae-service` | 服务发现与注册 (ServiceRegistry, ServiceDiscovery, LoadBalancer) |
-| `wae-websocket` | WebSocket 服务 (WebSocketServer, WebSocketClient) |
-| `wae-storage` | 对象存储服务 (StorageService, StorageProvider) |
-| `wae-email` | 邮件服务 (SmtpEmailProvider, SendmailEmailProvider) |
-| `wae-ai` | AI 服务抽象 (ChatCapability, TextToImageCapability) |
-| `wae-search` | 搜索服务 (Elasticsearch, OpenSearch) |
+| 模块              | 说明                                                        |
+| --------------- | --------------------------------------------------------- |
+| `wae-service`   | 服务发现与注册 (ServiceRegistry, ServiceDiscovery, LoadBalancer) |
+| `wae-websocket` | WebSocket 服务 (WebSocketServer, WebSocketClient)           |
+| `wae-storage`   | 对象存储服务 (StorageService, StorageProvider)                  |
+| `wae-email`     | 邮件服务 (SmtpEmailProvider, SendmailEmailProvider)           |
+| `wae-ai`        | AI 服务抽象 (ChatCapability, TextToImageCapability)           |
+| `wae-search`    | 搜索服务 (Elasticsearch, OpenSearch)                          |
 
 ### 基础设施模块
 
-| 模块 | 说明 |
-|-----|------|
-| `wae-resilience` | 弹性容错 (CircuitBreaker, RateLimiter, Retry, Timeout, Bulkhead) |
-| `wae-scheduler` | 任务调度器 (CronScheduler, IntervalScheduler, DelayedQueue) |
-| `wae-event` | 事件驱动 |
-| `wae-queue` | 消息队列 |
-| `wae-distributed` | 分布式支持 |
-| `wae-observability` | 可观测性 (logging, metrics, tracing, health) |
-| `wae-monitoring` | 监控服务 |
+| 模块                  | 说明                                                           |
+| ------------------- | ------------------------------------------------------------ |
+| `wae-resilience`    | 弹性容错 (CircuitBreaker, RateLimiter, Retry, Timeout, Bulkhead) |
+| `wae-scheduler`     | 任务调度器 (CronScheduler, IntervalScheduler, DelayedQueue)       |
+| `wae-event`         | 事件驱动                                                         |
+| `wae-queue`         | 消息队列                                                         |
+| `wae-distributed`   | 分布式支持                                                        |
+| `wae-observability` | 可观测性 (logging, metrics, tracing, health)                     |
+| `wae-monitoring`    | 监控服务                                                         |
 
 ### 认证模块
 
-| 模块 | 说明 |
-|-----|------|
-| `wae-authentication` | 认证服务 (JWT, OAuth2, SAML, TOTP) |
-| `wae-session` | Session 管理 (Session, SessionStore, SessionLayer) |
+| 模块                   | 说明                                               |
+| -------------------- | ------------------------------------------------ |
+| `wae-authentication` | 认证服务 (JWT, OAuth2, SAML, TOTP)                   |
+| `wae-session`        | Session 管理 (Session, SessionStore, SessionLayer) |
 
 ### 开发工具模块
 
-| 模块 | 说明 |
-|-----|------|
-| `wae-testing` | 测试支持 |
-| `wae-tools` | 开发工具 (迁移、自动迁移) |
-| `wae-macros` | 过程宏 |
-| `wae-schema` | Schema 定义 |
-| `wae-request` | HTTP 客户端 |
-| `wae-effect` | 副作用管理 |
-| `wae-cache` | 缓存服务 |
+| 模块            | 说明             |
+| ------------- | -------------- |
+| `wae-testing` | 测试支持           |
+| `wae-tools`   | 开发工具 (迁移、自动迁移) |
+| `wae-macros`  | 过程宏            |
+| `wae-schema`  | Schema 定义      |
+| `wae-request` | HTTP 客户端       |
+| `wae-effect`  | 副作用管理          |
+| `wae-cache`   | 缓存服务           |
 
 ## 命名约定
 
-| 类型 | 命名 | 示例 |
-|-----|------|------|
-| Trait | XxxCapability / XxxProvider / XxxService | ChatCapability, StorageProvider, AuthService |
-| Struct | XxxConfig / XxxParams | AiConfig, TextToImageParams, StorageConfig |
-| Enum | XxxType / XxxError / XxxState | StorageProviderType, WaeErrorKind, CircuitState |
-| Result | XxxResult | AiResult, StorageResult, WaeResult |
-| 错误 | XxxError | WaeError, WebSocketError, ConfigError |
-| Builder | XxxBuilder | HttpsServerBuilder, ResiliencePipelineBuilder |
+| 类型      | 命名                                       | 示例                                              |
+| ------- | ---------------------------------------- | ----------------------------------------------- |
+| Trait   | XxxCapability / XxxProvider / XxxService | ChatCapability, StorageProvider, AuthService    |
+| Struct  | XxxConfig / XxxParams                    | AiConfig, TextToImageParams, StorageConfig      |
+| Enum    | XxxType / XxxError / XxxState            | StorageProviderType, WaeErrorKind, CircuitState |
+| Result  | XxxResult                                | AiResult, StorageResult, WaeResult              |
+| 错误      | XxxError                                 | WaeError, WebSocketError, ConfigError           |
+| Builder | XxxBuilder                               | HttpsServerBuilder, ResiliencePipelineBuilder   |
 
 ## HTTP API
 
@@ -268,6 +268,142 @@ if (response.success && response.data) {
     console.log(response.data);
 } else {
     console.error(response.error?.message);
+}
+```
+
+### 前端框架 (wae-client)
+
+WAE 前端框架提供了信号系统、事件绑定和样式系统等核心功能，让 Rust 开发者能够以简洁、强类型的方式编写前端代码。
+
+#### 信号系统
+
+使用 `signal` 函数创建响应式状态：
+
+```rust
+use wae_client::prelude::*;
+
+let count = signal(0);                // 创建信号
+let doubled = signal(move || count.get() * 2); // 派生信号
+
+// 读取信号值
+assert_eq!(count.get(), 0);
+assert_eq!(doubled.get(), 0);
+
+// 更新信号值
+count.set(1);
+assert_eq!(count.get(), 1);
+assert_eq!(doubled.get(), 2);
+```
+
+#### 事件绑定
+
+使用 `on:click` 语法绑定事件处理器：
+
+```rust
+let count = signal(0);
+
+html! {
+    <button on:click={|| count.set(count.get() + 1)}>
+        "Increment"
+    </button>
+}
+```
+
+#### 样式系统
+
+使用 `class` 属性和 `style!` 宏组合 Tailwind 类名：
+
+```rust
+let is_large = signal(false);
+
+let class_names = style!(
+    "px-4 py-2 rounded",
+    if is_large.get() { "px-8 py-4" },
+    "bg-blue-500 text-white"
+);
+
+html! {
+    <Button class={class_names} on:click={move || is_large.set(!is_large.get())}>
+        "Toggle Size"
+    </Button>
+}
+```
+
+#### 组件系统
+
+使用 `#[component]` 宏定义组件：
+
+```rust
+#[component]
+fn Counter(initial: i32) -> Element {
+    let count = signal(initial);
+
+    html! {
+        <div class="flex items-center gap-2">
+            <span>{count.get()}</span>
+            <Button 
+                class="bg-green-500" 
+                on:click={move || count.set(count.get() + 1)}
+            >
+                "+"
+            </Button>
+        </div>
+    }
+}
+
+#[component]
+struct Card {
+    title: String,
+    #[default("shadow-md")]
+    class: String,
+    children: Element,
+}
+
+impl Component for Card {
+    fn render(&self) -> Element {
+        html! {
+            <div class={self.class}>
+                <h2>{self.title}</h2>
+                <div>{self.children}</div>
+            </div>
+        }
+    }
+}
+```
+
+#### 完整应用示例
+
+```rust
+use wae_client::prelude::*;
+
+#[component]
+fn App() -> Element {
+    let todos = signal(vec!["Learn Rust".to_string(), "Build wae".to_string()]);
+
+    html! {
+        <div class="p-4">
+            <h1 class="text-xl font-bold">Todo List</h1>
+            <ul>
+                {todos.get().iter().map(|todo| {
+                    html! { <li>{todo}</li> }
+                }).collect::<Vec<_>>()}
+            </ul>
+            <Button 
+                class="mt-4 bg-blue-500" 
+                on:click={move || {
+                    let mut new_todos = todos.get();
+                    new_todos.push("New item".to_string());
+                    todos.set(new_todos);
+                }}
+            >
+                "Add"
+            </Button>
+        </div>
+    }
+}
+
+fn main() {
+    wae_client::start(App);
 }
 ```
 
@@ -477,3 +613,4 @@ let users = pool.query("SELECT * FROM users WHERE active = ?", &[true]).await?;
 let user = User::find_by_id(pool, 1).await?;
 let users = User::find_all(pool).await?;
 ```
+

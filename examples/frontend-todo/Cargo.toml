@@ -1,0 +1,9 @@
+[package]
+name = "frontend-todo"
+version = "0.1.0"
+edition = "2021"
+description = "WAE 前端 Todo 应用示例"
+
+[dependencies]
+wae-client = { path = "../../backends/wae-client", features = ["web"] }
+wasm-bindgen = "0.2"
