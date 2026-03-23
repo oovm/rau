@@ -331,7 +331,7 @@ html! {
 
 #### 组件系统
 
-使用 `#[component]` 宏定义组件：
+使用 `#[component]` 宏定义组件，优先使用语义化元素：
 
 ```rust
 #[component]
@@ -339,15 +339,15 @@ fn Counter(initial: i32) -> Element {
     let count = signal(initial);
 
     html! {
-        <div class="flex items-center gap-2">
-            <span>{count.get()}</span>
+        <Layout class="flex items-center gap-2">
+            <Text>{count.get()}</Text>
             <Button 
                 class="bg-green-500" 
                 on:click={move || count.set(count.get() + 1)}
             >
                 "+"
             </Button>
-        </div>
+        </Layout>
     }
 }
 
@@ -362,12 +362,33 @@ struct Card {
 impl Component for Card {
     fn render(&self) -> Element {
         html! {
-            <div class={self.class}>
-                <h2>{self.title}</h2>
-                <div>{self.children}</div>
-            </div>
+            <Card class={self.class}>
+                <Heading>{self.title}</Heading>
+                <Layout>{self.children}</Layout>
+            </Card>
         }
     }
+}
+```
+
+#### 使用 Builder Pattern
+
+除了 `html!` 宏，还可以使用 Builder Pattern 构建 UI：
+
+```rust
+#[component]
+fn Counter(initial: i32) -> Element {
+    let count = signal(initial);
+
+    Layout::new()
+        .class("flex items-center gap-2")
+        .child(Text::new(count.get().to_string()))
+        .child(
+            Button::new("+")
+                .class("bg-green-500")
+                .on_click(move || count.set(count.get() + 1))
+        )
+        .build()
 }
 ```
 
@@ -380,26 +401,27 @@ use wae_client::prelude::*;
 fn App() -> Element {
     let todos = signal(vec!["Learn Rust".to_string(), "Build wae".to_string()]);
 
-    html! {
-        <div class="p-4">
-            <h1 class="text-xl font-bold">Todo List</h1>
-            <ul>
-                {todos.get().iter().map(|todo| {
-                    html! { <li>{todo}</li> }
-                }).collect::<Vec<_>>()}
-            </ul>
-            <Button 
-                class="mt-4 bg-blue-500" 
-                on:click={move || {
+    Layout::new()
+        .class("p-4")
+        .child(Heading::new("Todo List").class("text-xl font-bold"))
+        .child(
+            List::new()
+                .children(
+                    todos.get().iter().map(|todo| {
+                        ListItem::new(Text::new(todo.clone())).build()
+                    }).collect()
+                )
+        )
+        .child(
+            Button::new("Add")
+                .class("mt-4 bg-blue-500")
+                .on_click(move || {
                     let mut new_todos = todos.get();
                     new_todos.push("New item".to_string());
                     todos.set(new_todos);
-                }}
-            >
-                "Add"
-            </Button>
-        </div>
-    }
+                })
+        )
+        .build()
 }
 
 fn main() {

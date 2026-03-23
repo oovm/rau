@@ -236,6 +236,8 @@ impl TodoService for MyTodoService {
 
 ### 8.4 前端调用
 
+使用语义化元素和 Builder Pattern：
+
 ```rust
 use generated::client::TodoServiceClient;
 
@@ -247,12 +249,22 @@ fn TodoList() -> Element {
     // 组件挂载时加载数据
     {}
     
-    html! {
-        <div>
-            {todos.get().iter().map(|todo| {
-                html! { <div>{todo.text}</div> }
-            })}
-        </div>
-    }
+    // 使用 Builder Pattern
+    Layout::new()
+        .child(
+            List::new()
+                .children(
+                    todos.get().iter().map(|todo| {
+                        ListItem::new(Text::new(todo.text.clone())).build()
+                    }).collect()
+                )
+        )
+        .child(
+            Button::new("Add Todo")
+                .on_click(move || {
+                    // 创建新任务
+                })
+        )
+        .build()
 }
 ```

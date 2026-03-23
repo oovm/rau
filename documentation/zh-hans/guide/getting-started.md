@@ -237,6 +237,8 @@ wasm-bindgen = "0.2"
 
 ### 2. 创建组件
 
+使用语义化元素和 Builder Pattern：
+
 ```rust
 use wae_client::prelude::*;
 
@@ -244,23 +246,25 @@ use wae_client::prelude::*;
 fn Counter(initial: i32) -> Element {
     let count = signal(initial);
 
-    html! {
-        <div class="flex items-center gap-2">
-            <span>{count.get()}</span>
-            <button on:click={move || count.set(count.get() + 1)}>
-                "+"
-            </button>
-        </div>
-    }
+    // 使用 Builder Pattern
+    Layout::new()
+        .class("flex items-center gap-2")
+        .child(Text::new(count.get().to_string()))
+        .child(
+            Button::new("+")
+                .on_click(move || count.set(count.get() + 1))
+        )
+        .build()
 }
 
 #[component]
 fn App() -> Element {
+    // 使用 html! 宏（也支持语义化元素）
     html! {
-        <div class="p-4">
-            <h1 class="text-xl font-bold">Welcome to WAE</h1>
+        <Layout class="p-4">
+            <Heading class="text-xl font-bold">"Welcome to WAE"</Heading>
             <Counter initial={0} />
-        </div>
+        </Layout>
     }
 }
 
